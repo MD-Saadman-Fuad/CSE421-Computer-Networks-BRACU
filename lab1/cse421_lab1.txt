@@ -1,0 +1,72 @@
+*** For setting up R1 ***
+
+en
+config
+hostname R1
+enable secret class
+
+banner motd &
+******************************** 
+!!!AUTHORIZED ACCESS ONLY!!! 
+******************************** 
+& 
+
+line console 0
+password cisco
+login
+exit
+
+line vty 0 4
+password cisco
+login
+exit
+
+interface fastethernet 0/0
+ip address 192.168.1.1 255.255.255.0
+no shut
+
+interface serial 0/0/0
+ip address 192.168.2.1 255.255.255.0
+clock rate 64000
+no shut
+
+end
+
+copy running-config startup-config
+
+
+*** For setting up R2 ***
+
+en
+config
+hostname R2
+enable secret class
+
+banner motd &
+******************************** 
+!!!AUTHORIZED ACCESS ONLY!!! 
+******************************** 
+& 
+
+line console 0
+password cisco
+login
+exit
+
+line vty 0 4
+password cisco
+login
+exit
+
+interface fastethernet 0/0
+ip address 192.168.3.1 255.255.255.0
+no shut
+
+interface serial 0/0/0
+ip address 192.168.2.2 255.255.255.0
+clock rate 64000
+no shut
+
+end
+
+copy running-config startup-config
